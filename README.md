@@ -21,7 +21,7 @@
     - https://github.com/zsh-users/zsh-completions
     - https://github.com/zsh-users/zsh-syntax-highlighting
 - These common packages are also installed for all suffix/version:
-  - `gcompat` `libstdc++` `zip` `unzip` `jq` `sudo` `curl` `zsh`
+  - `gcompat` `libstdc++` `zip` `unzip` `jq` `sudo` `curl` `zsh` `bash`
 
 ---
 

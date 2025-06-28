@@ -6,7 +6,7 @@ ARG PNPM_VERSION=latest
 
 ## Install basic packages
 RUN apk add --no-cache \
-  gcompat libstdc++ zip unzip jq sudo curl zsh
+  gcompat libstdc++ zip unzip jq sudo curl zsh bash
 
 # Clear the ENTRYPOINT from node image
 ENTRYPOINT []
