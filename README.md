@@ -37,23 +37,26 @@ docker run -it --rm namesmt/linux-stuff:alpine-node-dev
 docker run -it --rm namesmt/linux-stuff:node-dev_pnpm8.10.5
 ```
 
-#### WSL2 Alpine Quick Start:
-Follow [Yuka](https://github.com/yuk7/AlpineWSL)'s instruction to install Alpine WSL2
+### Available Scripts:
 
-Setting up `node-dev` *([`fnm`](https://github.com/Schniz/fnm) included to manage node version)*:
+#### Alpine:
+
+##### `alpine-node-dev` dev environment setup:
+*(Tips: Follow [Yuka](https://github.com/yuk7/AlpineWSL)'s instruction to install Alpine WSL2)*
+
+Run `alpine-node-dev` script: *([`fnm`](https://github.com/Schniz/fnm) included to manage node version)*
 ```sh
-wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/node-dev.sh -O- | bash
+wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/alpine-node-dev.sh -O- | bash
 ```
 
-#### Additional scripts:
 ##### Install [fnm](https://github.com/Schniz/fnm) - Fast Node Manager, similar to `nvm`
 ```sh
-wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/scripts/install-fnm.sh -O- | sh
+wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/scripts/install-fnm.sh -O- | sh
 ```
 
 ##### Install Docker
 ```sh
-wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/scripts/install-docker.sh -O- | sh
+wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/scripts/install-docker.sh -O- | sh
 ```
 You can call `sh ~/alpine.docker.service.sh` to start the docker service,  
 And call `sh ~/alpine.docker.service.sh stop` to stop the docker service.
@@ -62,6 +65,14 @@ And call `sh ~/alpine.docker.service.sh stop` to stop the docker service.
 This package will help you in cases where an app requires glibc and `gcompat` doesn't work, like `Miniconda`, glibc `bun`.
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/scripts/install-glibc.sh -O- | sh
+```
+
+#### Ubuntu:
+
+##### `ubuntu-node-dev` dev environment setup:
+Run `ubuntu-node-dev` script: *([`fnm`](https://github.com/Schniz/fnm) included to manage node version)*
+```sh
+wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/ubuntu/ubuntu-node-dev.sh -O- | bash
 ```
 
 ---
