@@ -8,8 +8,9 @@ set -e
 ## Script to install an opinionated dev environment, check out: gh:namesmt/linux-stuff
 
 # Update package database, keychain, and trust database
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
 sudo pacman -Sy archlinux-keyring --noconfirm
-sudo pacman-key --init --noconfirm
 
 # Install basic packages
 sudo pacman -S --noconfirm \
