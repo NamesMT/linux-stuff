@@ -80,7 +80,7 @@ wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/ubuntu/ubuntu-no
 ##### `arch-node-dev` dev environment setup:
 Run `arch-node-dev` script: *([`fnm`](https://github.com/Schniz/fnm) included to manage node version)*
 ```sh
-wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/arch/arch-node-dev.sh -O- | bash
+curl -fsSL https://raw.githubusercontent.com/NamesMT/linux-stuff/main/arch/arch-node-dev.sh | bash
 ```
 
 ---
