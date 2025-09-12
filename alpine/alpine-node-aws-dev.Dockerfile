@@ -1,9 +1,9 @@
 ## +aws: Including aws-cli
-FROM namesmt/images-alpine:node-aws as builder
+FROM namesmt/linux-stuff:alpine-node-aws as builder
 ##
 
 
-FROM namesmt/images-alpine:node-dev
+FROM namesmt/linux-stuff:alpine-node-dev
 LABEL maintainer="dangquoctrung123@gmail.com"
 
 ## +aws: Copy built aws-cli

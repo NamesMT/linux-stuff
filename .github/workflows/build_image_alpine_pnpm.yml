@@ -47,50 +47,55 @@ jobs:
           echo "suffix=${TAG}" >> $GITHUB_OUTPUT
           echo "pnpmVersion=${TAG:4}" >> $GITHUB_OUTPUT
 
-      - name: Build node
+      - name: Build alpine-node
         uses: docker/build-push-action@v6
         with:
-          file: ./node.Dockerfile
+          file: ./alpine/alpine-node.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
+          # Also push to old docker hub repo: `namesmt/images-alpine`
           tags: |
-            ${{ steps.container_detail.outputs.imageName }}:node
-            ${{ steps.container_detail.outputs.imageName }}:node_${{ steps.container_detail.outputs.suffix }}
+            namesmt/images-alpine:node 
+            ${{ steps.container_detail.outputs.imageName }}:alpine-node
+            ${{ steps.container_detail.outputs.imageName }}:alpine-node_${{ steps.container_detail.outputs.suffix }}
           build-args: |
             PNPM_VERSION=${{ steps.container_detail.outputs.pnpmVersion }}
 
-      - name: Build node-dev
+      - name: Build alpine-node-dev
         uses: docker/build-push-action@v6
         with:
-          file: ./node-dev.Dockerfile
+          file: ./alpine/alpine-node-dev.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ steps.container_detail.outputs.imageName }}:node-dev
-            ${{ steps.container_detail.outputs.imageName }}:node-dev_${{ steps.container_detail.outputs.suffix }}
+            namesmt/images-alpine:node-dev
+            ${{ steps.container_detail.outputs.imageName }}:alpine-node-dev
+            ${{ steps.container_detail.outputs.imageName }}:alpine-node-dev_${{ steps.container_detail.outputs.suffix }}
           build-args: |
             PNPM_VERSION=${{ steps.container_detail.outputs.pnpmVersion }}
 
-      - name: Build node-aws
+      - name: Build alpine-node-aws
         uses: docker/build-push-action@v6
         with:
-          file: ./node-aws.Dockerfile
+          file: ./alpine/alpine-node-aws.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ steps.container_detail.outputs.imageName }}:node-aws
-            ${{ steps.container_detail.outputs.imageName }}:node-aws_${{ steps.container_detail.outputs.suffix }}
+            namesmt/images-alpine:node-aws
+            ${{ steps.container_detail.outputs.imageName }}:alpine-node-aws
+            ${{ steps.container_detail.outputs.imageName }}:alpine-node-aws_${{ steps.container_detail.outputs.suffix }}
           build-args: |
             PNPM_VERSION=${{ steps.container_detail.outputs.pnpmVersion }}
 
-      - name: Build node-aws-dev
+      - name: Build alpine-node-aws-dev
         uses: docker/build-push-action@v6
         with:
-          file: ./node-aws-dev.Dockerfile
+          file: ./alpine/alpine-node-aws-dev.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ steps.container_detail.outputs.imageName }}:node-aws-dev
-            ${{ steps.container_detail.outputs.imageName }}:node-aws-dev_${{ steps.container_detail.outputs.suffix }}
+            namesmt/images-alpine:node-aws-dev
+            ${{ steps.container_detail.outputs.imageName }}:alpine-node-aws-dev
+            ${{ steps.container_detail.outputs.imageName }}:alpine-node-aws-dev_${{ steps.container_detail.outputs.suffix }}
           build-args: |
             PNPM_VERSION=${{ steps.container_detail.outputs.pnpmVersion }}

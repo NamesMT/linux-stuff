@@ -35,7 +35,7 @@ RUN find /opt/aws-cli/lib/aws-cli/awscli/botocore/data -name examples-1.json -de
 ##
 
 
-FROM namesmt/images-alpine:node
+FROM namesmt/linux-stuff:alpine-node
 LABEL maintainer="dangquoctrung123@gmail.com"
 
 ## +aws: Copy built aws-cli

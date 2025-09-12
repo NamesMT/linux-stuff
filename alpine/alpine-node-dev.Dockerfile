@@ -1,4 +1,4 @@
-FROM namesmt/images-alpine:node
+FROM namesmt/linux-stuff:alpine-node
 LABEL maintainer="dangquoctrung123@gmail.com"
 
 ## +dev: enhancements for development :D

@@ -1,4 +1,4 @@
-name: Check for new release
+name: Check for new pnpm release
 
 on:
   schedule:
@@ -15,4 +15,4 @@ jobs:
         fetch-depth: 0
     - name: Check for new tags
       run: |
-        ./.github/scripts/new_release_check.sh
+        ./.github/scripts/new_release_check_pnpm.sh

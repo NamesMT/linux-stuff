@@ -2,8 +2,10 @@
 
 set -e
 
+## Note: not tested for non-root user installation, open issue/pr if needed
+
 ## What this?
-## Script to install a similar dev environment like `node-dev.Dockerfile` environment in a fresh Alpine instance, preferably inside of WSL.
+## Script to install an opinionated dev environment, check out: gh:namesmt/linux-stuff
 
 # Install basic packages
 apk update
@@ -31,7 +33,7 @@ zsh
 export SHELL=/bin/zsh
 
 # Install fnm (patched for alpine zsh) and install lts node using fnm
-wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-fnm.sh -O- | sh
+wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/scripts/install-fnm.sh -O- | sh
 source ~/.zshrc
 fnm install --lts
 
