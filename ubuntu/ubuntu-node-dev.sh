@@ -35,3 +35,24 @@ export SHELL=/bin/zsh
 wget https://fnm.vercel.app/install -O- | sh
 source ~/.zshrc
 fnm install --lts
+
+# Setup the environment path for pnpm
+touch /etc/profile.d/pnpmPath.sh && \
+  echo 'export PNPM_HOME=/root/.local/share/pnpm' >> /etc/profile.d/pnpmPath.sh && \
+  echo 'export PATH=$PNPM_HOME:$PATH' >> /etc/profile.d/pnpmPath.sh && \
+  source /etc/profile.d/pnpmPath.sh
+
+# Install pnpm and ni
+npm install --global corepack@latest
+corepack enable
+corepack prepare pnpm --activate
+pnpm i -g @antfu/ni && \
+  touch ~/.nirc && \
+  echo 'defaultAgent=pnpm' >> ~/.nirc && \
+  echo 'globalAgent=pnpm' >> ~/.nirc
+
+# Adding a simple command to change git remote connection from/to ssh/https
+touch /etc/profile.d/gitRemoteChanger.sh && \
+  echo alias git-ssh=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^https://\(\[\^/\]\*\)/\(.\*\)\$,git@\\1:\\2,\'\\\'\'\)\"\' >> /etc/profile.d/gitRemoteChanger.sh && \
+  echo alias git-https=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^git@\(\[\^:\]\*\):/\*\(.\*\)\$,https://\\1/\\2,\'\\\'\'\)\"\' >> /etc/profile.d/gitRemoteChanger.sh && \
+  source /etc/profile.d/gitRemoteChanger.sh
