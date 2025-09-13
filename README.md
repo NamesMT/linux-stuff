@@ -4,6 +4,7 @@
 ![Docker Image Size (alpine-node-aws-dev)](https://img.shields.io/docker/image-size/namesmt/linux-stuff/alpine-node-aws-dev?label=image%20size%3Anode-aws-dev)
 
 ### Features:
+
 - Latest Node LTS & pnpm (**node** tag)
   - [@antfu/ni](https://github.com/antfu/ni)
 - Self-built latest aws-cli v2 (**aws** tag)
@@ -42,6 +43,7 @@ docker run -it --rm namesmt/linux-stuff:node-dev_pnpm8.10.5
 #### Alpine:
 
 ##### `alpine-node-dev` dev environment setup:
+
 *(Tips: Follow [Yuka](https://github.com/yuk7/AlpineWSL)'s instruction to install Alpine WSL2)*
 
 Run `alpine-node-dev` script: *([`fnm`](https://github.com/Schniz/fnm) included to manage node version)*
@@ -50,11 +52,13 @@ wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/alpine-no
 ```
 
 ##### Install [fnm](https://github.com/Schniz/fnm) - Fast Node Manager, similar to `nvm`
+
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/scripts/install-fnm.sh -O- | sh
 ```
 
 ##### Install Docker
+
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/scripts/install-docker.sh -O- | sh
 ```
@@ -62,6 +66,7 @@ You can call `sh ~/alpine.docker.service.sh` to start the docker service,
 And call `sh ~/alpine.docker.service.sh stop` to stop the docker service.
 
 ##### Install [sgerrand/alpine-pkg-glibc](https://github.com/sgerrand/alpine-pkg-glibc)
+
 This package will help you in cases where an app requires glibc and `gcompat` doesn't work, like `Miniconda`, glibc `bun`.
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/scripts/install-glibc.sh -O- | sh
@@ -70,6 +75,7 @@ wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/scripts/install-
 #### Ubuntu:
 
 ##### `ubuntu-node-dev` dev environment setup:
+
 Run `ubuntu-node-dev` script: *([`fnm`](https://github.com/Schniz/fnm) included to manage node version)*
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/ubuntu/ubuntu-node-dev.sh -O- | bash
@@ -77,7 +83,15 @@ wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/ubuntu/ubuntu-no
 
 #### Arch:
 
+##### `arch-init` Arch initialization script:
+
+This script will help you do some initial setup for an Arch Linux installation, like: updating databases (key, packages), updating all packages, create a new user.
+```sh
+export NEW_USER=yourname && curl -fsSL https://raw.githubusercontent.com/NamesMT/linux-stuff/main/arch/arch-init.sh | bash
+```
+
 ##### `arch-node-dev` dev environment setup:
+
 Run `arch-node-dev` script: *([`fnm`](https://github.com/Schniz/fnm) included to manage node version)*
 ```sh
 curl -fsSL https://raw.githubusercontent.com/NamesMT/linux-stuff/main/arch/arch-node-dev.sh | bash
@@ -86,6 +100,7 @@ curl -fsSL https://raw.githubusercontent.com/NamesMT/linux-stuff/main/arch/arch-
 ---
 
 ### Build:
+
 ```sh
 export imageName=namesmt/linux-stuff
 export imageTag= # node | node-dev | node-aws ...
@@ -94,7 +109,9 @@ docker push "${imageName}:${imageTag}"
 ```
 
 ## Roadmap
+
 - [x] Github Actions to automate build
 
 ## Credits:
+
 - [theidledeveloper/aws-cli-alpine](https://github.com/theidledeveloper/aws-cli-alpine): most of starting points
