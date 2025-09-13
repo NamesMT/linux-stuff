@@ -75,6 +75,14 @@ Run `ubuntu-node-dev` script: *([`fnm`](https://github.com/Schniz/fnm) included 
 wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/ubuntu/ubuntu-node-dev.sh -O- | bash
 ```
 
+#### Arch:
+
+##### `arch-node-dev` dev environment setup:
+Run `arch-node-dev` script: *([`fnm`](https://github.com/Schniz/fnm) included to manage node version)*
+```sh
+wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/arch/arch-node-dev.sh -O- | bash
+```
+
 ---
 
 ### Build:
