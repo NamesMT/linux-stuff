@@ -20,7 +20,7 @@
     - https://github.com/zsh-users/zsh-completions
     - https://github.com/zsh-users/zsh-syntax-highlighting
 - These common packages are installed for all:
-  - `zip` `unzip` `jq` `sudo` `curl` `zsh` `bash`
+  - `zip` `unzip` `jq` `sudo` `less` `zsh` `curl` `wget`
   - *alpine-only:* `gcompat` `libstdc++`
 
 ---

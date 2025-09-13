@@ -10,7 +10,8 @@ set -e
 # Install basic packages
 apk update
 apk add --no-cache \
-  gcompat libstdc++ zip jq sudo git less zsh curl
+  gcompat libstdc++ \
+  zip unzip jq sudo git less zsh curl wget
 
 # Configures zsh
 sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/download/zsh-in-docker.sh)" -- \

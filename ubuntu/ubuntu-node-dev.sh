@@ -10,7 +10,7 @@ set -e
 # Install basic packages
 sudo apt-get update
 sudo apt-get install -y \
-  zip jq curl less zsh git
+  zip unzip jq sudo git less zsh curl wget
 
 # Configures zsh
 sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/download/zsh-in-docker.sh)" -- \
