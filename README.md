@@ -35,7 +35,9 @@ Available on Docker registry:
 docker run -it --rm namesmt/linux-stuff:alpine-node-dev
 
 # For CIs, you should pin the version: 
-docker run -it --rm namesmt/linux-stuff:node-dev_pnpm8.10.5
+docker run -it --rm namesmt/linux-stuff:alpine-node-dev_pnpm10.16.0
+
+# (For older versions, check `namesmt/images-alpine` image)
 ```
 
 ### Available Scripts:
