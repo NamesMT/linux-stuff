@@ -91,6 +91,7 @@ This script will help you do some initial setup for an Arch Linux installation, 
 ```sh
 export NEW_USER=yourname && curl -fsSL https://raw.githubusercontent.com/NamesMT/linux-stuff/main/arch/arch-init.sh | bash
 ```
+_Note: please the WSL distro if you use WSL after running the init script, this is necessary to apply some WSL-specific setups_
 
 ##### `arch-node-dev` dev environment setup:
 
