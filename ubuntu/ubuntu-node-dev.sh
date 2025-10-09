@@ -57,3 +57,5 @@ sudo touch /etc/profile.d/gitRemoteChanger.sh && \
   echo alias git-ssh=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^https://\(\[\^/\]\*\)/\(.\*\)\$,git@\\1:\\2,\'\\\'\'\)\"\' | sudo tee -a /etc/profile.d/gitRemoteChanger.sh && \
   echo alias git-https=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^git@\(\[\^:\]\*\):/\*\(.\*\)\$,https://\\1/\\2,\'\\\'\'\)\"\' | sudo tee -a /etc/profile.d/gitRemoteChanger.sh && \
   source /etc/profile.d/gitRemoteChanger.sh
+
+echo "All done, please restart / open a new zsh shell to ensure everything is loaded correctly"
