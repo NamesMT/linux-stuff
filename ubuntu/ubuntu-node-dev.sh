@@ -29,6 +29,7 @@ sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/downl
 # set zsh as default shell
 sudo sed -i 's/\/bin\/bash/\/bin\/zsh/g' /etc/passwd
 export SHELL=/bin/zsh
+exec /bin/zsh
 
 # Install fnm and install lts node using fnm
 wget https://fnm.vercel.app/install -O- | sh
