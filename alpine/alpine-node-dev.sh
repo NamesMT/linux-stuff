@@ -31,6 +31,7 @@ sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/downl
 sudo sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
 sudo sed -i 's/\/root:\/bin\/sh/\/root:\/bin\/zsh/g' /etc/passwd
 export SHELL=/bin/zsh
+exec /bin/zsh
 
 # Install fnm (patched for alpine zsh) and install lts node using fnm
 wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/scripts/install-fnm.sh -O- | sh
