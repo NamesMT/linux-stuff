@@ -41,8 +41,8 @@ fnm install --lts
 # Setup the environment path for pnpm
 mkdir ~/.pnpm-global
 sudo touch /etc/profile.d/pnpmPath.sh && \
-  echo 'export PNPM_HOME=$HOME/.pnpm-global' | sudo tee -a /etc/profile.d/pnpmPath.sh && \
-  echo 'export PATH=$PNPM_HOME:$PATH' | sudo tee -a /etc/profile.d/pnpmPath.sh && \
+  echo 'export PNPM_HOME=\$HOME/.pnpm-global' | sudo tee -a /etc/profile.d/pnpmPath.sh && \
+  echo 'export PATH=\$PNPM_HOME/bin:\$PNPM_HOME:\$PATH' | sudo tee -a /etc/profile.d/pnpmPath.sh && \
   source /etc/profile.d/pnpmPath.sh
 
 # Install pnpm and ni
