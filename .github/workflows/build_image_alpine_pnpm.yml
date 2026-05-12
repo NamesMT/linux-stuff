@@ -1,5 +1,9 @@
 name: Build image pnpm* tag creation
 
+concurrency:
+  group: pnpm-image-build
+  cancel-in-progress: false
+
 on:
   push:
     tags:
