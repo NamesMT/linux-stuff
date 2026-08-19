@@ -1,6 +1,6 @@
 ## +aws: Building aws-cli
 # Even though alpine 3.18+ have native aws-cli package, the self-built package have lower size and ensure latest version, as well packaged as a proper standalone binary instead of installing multiple packages to global apk.
-FROM alpine as builder
+FROM alpine:3.23 as builder
 
 RUN apk add --no-cache \
   python3 py3-pip \
