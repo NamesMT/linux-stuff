@@ -25,5 +25,11 @@ RELEASES=$(wget -qO- "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releas
 echo $RELEASES | jq -c '.[]' |
   while IFS=$"\n" read -r VAR; do
     VERSION=$(echo "$VAR" | jq -r '.tag_name')
-    check_version "$VERSION"
+    # ONLY PROCESS SEMVER TAGS LIKE v11.22.0:
+    # SKIP RC/ALPHA/BETA SUFFIXES (v11.0.0-rc.1) AND SUBPACKAGE TAGS (@pnpm/foo@1.0.0)
+    if [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+      check_version "$VERSION"
+    else
+      echo "Skipping non-release tag: $VERSION"
+    fi
   done
