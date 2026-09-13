@@ -71,7 +71,7 @@ And call `sh ~/alpine.docker.service.sh stop` to stop the docker service.
 
 This package will help you in cases where an app requires glibc and `gcompat` doesn't work, like `Miniconda`, glibc `bun`.
 ```sh
-wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/scripts/install-glibc.sh -O- | sh
+wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/scripts/install-glibc.sh -O- | sh
 ```
 
 #### Ubuntu:
