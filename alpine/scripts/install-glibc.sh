@@ -1,12 +1,14 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
-# List of packages to remove
+# sgerrand/alpine-pkg-glibc has no `latest` release; pin an explicit version.
+GLIBC_VERSION="2.35-r1"
+BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}"
+
+# Remove existing glibc packages so the pinned version can be installed cleanly
 echo "Removing existing glibc and glibc-bin..."
-packages_to_remove="glibc glibc-bin"
-
-for package in $packages_to_remove; do
+for package in glibc glibc-bin; do
   if apk info -e "$package"; then
     echo "$package found, removing..."
     apk del "$package"
@@ -14,6 +16,7 @@ for package in $packages_to_remove; do
 done
 
 cd /tmp
-wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk
-wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-bin-2.35-r1.apk
-apk add --no-cache --allow-untrusted --force-overwrite bash glibc-2.35-r1.apk glibc-bin-2.35-r1.apk
+curl -fsSLO "${BASE_URL}/glibc-${GLIBC_VERSION}.apk"
+curl -fsSLO "${BASE_URL}/glibc-bin-${GLIBC_VERSION}.apk"
+apk add --no-cache --allow-untrusted --force-overwrite \
+  bash "glibc-${GLIBC_VERSION}.apk" "glibc-bin-${GLIBC_VERSION}.apk"
