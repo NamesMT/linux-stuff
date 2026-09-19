@@ -38,7 +38,7 @@ jobs:
         id: container_detail
         run: |
           if [ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]; then
-            TAG=$(git tag --sort=taggerdate | tail -1)
+            TAG=$(git tag --sort=-v:refname | head -1)
           else
             TAG=$(echo ${{ github.ref }} | cut -d/ -f3)
           fi
