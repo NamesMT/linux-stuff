@@ -19,7 +19,14 @@ REPO_OWNER="pnpm"
 REPO_NAME="pnpm"
 
 # GET THE THREE LATEST RELEASES OF THE REPO (in case the repo decides to release more than one version in a day :D)
-RELEASES=$(wget -qO- "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases?per_page=3")
+# Authenticate via GH_TOKEN when available to avoid the 60/hr unauthenticated API rate limit
+# (unauthenticated requests from shared CI IPs intermittently return 403).
+RELEASES_URL="https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases?per_page=3"
+if [ -n "${GH_TOKEN:-}" ]; then
+  RELEASES=$(curl -fsSL -H "Authorization: Bearer ${GH_TOKEN}" "$RELEASES_URL")
+else
+  RELEASES=$(curl -fsSL "$RELEASES_URL")
+fi
 
 # GET THE TAG NAME AS WE USE IT FOR OUR OWN TAGS
 echo $RELEASES | jq -c '.[]' |
