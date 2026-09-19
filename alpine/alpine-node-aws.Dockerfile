@@ -10,12 +10,21 @@ RUN apk add --no-cache \
   build-base \
   libffi-dev \
   cmake \
-  jq
+  jq \
+  curl \
+  git
 
 WORKDIR /aws-cli
 
-RUN wget $(wget https://api.github.com/repos/aws/aws-cli/tags\?per_page\=1 -qO- | jq -r '.[0].tarball_url') -qO- | \
-  tar -xz --strip-components=1 --exclude=.changes --exclude=.github --exclude=tests --exclude=proposals
+# Resolve the latest aws-cli release via `git ls-remote` (git protocol) instead of the GitHub
+# REST API, which returns 403 "rate limit exceeded" for unauthenticated requests on shared CI IPs.
+RUN AWSCLI_TAG=$(git ls-remote --tags --refs --sort=-version:refname 'https://github.com/aws/aws-cli.git' \
+      | awk -F'refs/tags/' 'NF{print $2}' \
+      | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
+      | head -1) && \
+    echo "Building aws-cli ${AWSCLI_TAG}" && \
+    curl -fsSL "https://github.com/aws/aws-cli/archive/refs/tags/${AWSCLI_TAG}.tar.gz" | \
+    tar -xz --strip-components=1 --exclude=.changes --exclude=.github --exclude=tests --exclude=proposals
 
 # Allow using pip to add global packages
 RUN python -m pip config set global.break-system-packages true

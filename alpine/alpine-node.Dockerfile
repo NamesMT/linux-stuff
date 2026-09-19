@@ -23,8 +23,9 @@ RUN touch /etc/profile.d/pnpmPath.sh && \
   echo "export PNPM_HOME=\$PNPM_HOME" >> /etc/profile.d/pnpmPath.sh && \
   echo "export PATH=\$PNPM_HOME/bin:\$PNPM_HOME:\$PATH" >> /etc/profile.d/pnpmPath.sh && \
   source /etc/profile.d/pnpmPath.sh
-# This will make the command re-run if theres a new pnpm version (prevents docker cache installing an older version)
-ADD "https://api.github.com/repos/pnpm/pnpm/tags?per_page=1" latest_commit
+# Cache-buster: re-run the corepack install when a new pnpm version is published.
+# Uses the npm registry (not rate-limited) instead of the unauthenticated GitHub API.
+ADD "https://registry.npmjs.org/-/package/pnpm/dist-tags" latest_pnpm
 RUN npm install --global corepack@latest
 RUN corepack enable
 RUN corepack prepare pnpm@$PNPM_VERSION --activate
