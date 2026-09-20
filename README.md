@@ -131,7 +131,7 @@ Automated by `.github/workflows/build_image_alpine_pnpm.yml` (multi-arch `linux/
 
 #### Arch:
 
-Automated by `.github/workflows/build_image_arch_pnpm.yml` (multi-arch `linux/amd64` + `linux/arm64`), triggered on the same `pnpm*` git tags and `workflow_dispatch`. Pushes `namesmt/linux-stuff:arch-*` (and legacy `namesmt/images-arch:*`). Manual build (each stage builds on the previously-pushed image):
+Automated by `.github/workflows/build_image_arch_pnpm.yml` (`linux/amd64` only — Arch Linux officially ships x86_64, and `archlinux:latest` has no arm64 manifest), triggered on the same `pnpm*` git tags and `workflow_dispatch`. Pushes `namesmt/linux-stuff:arch-*` (and legacy `namesmt/images-arch:*`). Manual build (each stage builds on the previously-pushed image):
 
 ```sh
 export imageName=namesmt/linux-stuff
