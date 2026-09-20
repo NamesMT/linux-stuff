@@ -140,11 +140,6 @@ docker build -f "arch/${imageTag}.Dockerfile" -t "${imageName}:${imageTag}" .
 docker push "${imageName}:${imageTag}"
 ```
 
-> **Nightly auto-tag:** Arch is intentionally scoped to the build workflow only. The shared nightly
-> `.github/workflows/check_new_release_pnpm.yml` (via `.github/scripts/new_release_check_pnpm.sh`)
-> tags the *repository* with `pnpm*` on new pnpm releases, and both the Alpine **and** Arch build
-> workflows react to that same tag — so no separate Arch nightly checker is required.
-
 ## Roadmap
 
 - [x] Github Actions to automate build
