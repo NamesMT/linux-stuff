@@ -1,4 +1,4 @@
-name: Build image pnpm* tag creation
+name: Build Alpine image pnpm* tag creation
 
 concurrency:
   group: pnpm-image-build
