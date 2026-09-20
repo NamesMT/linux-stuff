@@ -2,6 +2,8 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/namesmt/linux-stuff)
 ![Docker Image Size (alpine-node)](https://img.shields.io/docker/image-size/namesmt/linux-stuff/alpine-node?label=image%20size%3Anode)
 ![Docker Image Size (alpine-node-aws-dev)](https://img.shields.io/docker/image-size/namesmt/linux-stuff/alpine-node-aws-dev?label=image%20size%3Anode-aws-dev)
+![Docker Image Size (arch-node)](https://img.shields.io/docker/image-size/namesmt/linux-stuff/arch-node?label=image%20size%3Aarch-node)
+![Docker Image Size (arch-node-aws-dev)](https://img.shields.io/docker/image-size/namesmt/linux-stuff/arch-node-aws-dev?label=image%20size%3Aarch-node-aws-dev)
 
 ### Features:
 
@@ -38,6 +40,18 @@ docker run -it --rm namesmt/linux-stuff:alpine-node-dev
 docker run -it --rm namesmt/linux-stuff:alpine-node-dev_pnpm10.16.0
 
 # (For older versions, check `namesmt/images-alpine` image)
+```
+
+#### Arch:
+
+Available on Docker registry: *(Arch builds mirror the Alpine ones on an `archlinux:latest` base — Node/pnpm via pacman+corepack, same zsh/oh-my-zsh dev setup, same self-built aws-cli v2)*
+```sh
+docker run -it --rm namesmt/linux-stuff:arch-node-dev
+
+# For CIs, you should pin the version:
+docker run -it --rm namesmt/linux-stuff:arch-node-dev_pnpm10.16.0
+
+# (For older versions, check `namesmt/images-arch` image)
 ```
 
 ### Available Scripts:
@@ -110,6 +124,26 @@ export imageTag= # node | node-dev | node-aws ...
 docker build -f "${imageTag}.Dockerfile" -t "${imageName}:${imageTag}" "."
 docker push "${imageName}:${imageTag}"
 ```
+
+#### Alpine:
+
+Automated by `.github/workflows/build_image_alpine_pnpm.yml` (multi-arch `linux/amd64` + `linux/arm64`), triggered on `pnpm*` git tags and `workflow_dispatch`. Pushes `namesmt/linux-stuff:alpine-*` (and legacy `namesmt/images-alpine:*`).
+
+#### Arch:
+
+Automated by `.github/workflows/build_image_arch_pnpm.yml` (multi-arch `linux/amd64` + `linux/arm64`), triggered on the same `pnpm*` git tags and `workflow_dispatch`. Pushes `namesmt/linux-stuff:arch-*` (and legacy `namesmt/images-arch:*`). Manual build (each stage builds on the previously-pushed image):
+
+```sh
+export imageName=namesmt/linux-stuff
+export imageTag=arch-node     # arch-node | arch-node-dev | arch-node-aws | arch-node-aws-dev
+docker build -f "arch/${imageTag}.Dockerfile" -t "${imageName}:${imageTag}" .
+docker push "${imageName}:${imageTag}"
+```
+
+> **Nightly auto-tag:** Arch is intentionally scoped to the build workflow only. The shared nightly
+> `.github/workflows/check_new_release_pnpm.yml` (via `.github/scripts/new_release_check_pnpm.sh`)
+> tags the *repository* with `pnpm*` on new pnpm releases, and both the Alpine **and** Arch build
+> workflows react to that same tag — so no separate Arch nightly checker is required.
 
 ## Roadmap
 
