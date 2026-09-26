@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.23
+ARG ALPINE_VERSION=3.24
 
 FROM node:lts-alpine${ALPINE_VERSION}
 LABEL maintainer="dangquoctrung123@gmail.com"
