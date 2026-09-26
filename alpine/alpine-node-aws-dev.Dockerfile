@@ -1,12 +1,7 @@
-## +aws: Including aws-cli
-FROM namesmt/linux-stuff:alpine-node-aws as builder
-##
-
-
+## +aws: Adding aws-cli to the dev environment
+# Same repo package as the non-dev aws image, installed on the dev base.
 FROM namesmt/linux-stuff:alpine-node-dev
 LABEL maintainer="dangquoctrung123@gmail.com"
 
-## +aws: Copy built aws-cli
-COPY --from=builder /usr/local/aws-cli/ /usr/local/aws-cli/
-COPY --from=builder /usr/local/bin/ /usr/local/bin/
+RUN apk add --no-cache aws-cli mandoc
 ##

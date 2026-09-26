@@ -9,7 +9,7 @@
 
 - Latest Node LTS & pnpm (**node** tag)
   - [@antfu/ni](https://github.com/antfu/ni)
-- Self-built latest aws-cli v2 (**aws** tag)
+- aws-cli v2 from the distro repo (**aws** tag)
 - git + Oh My Zsh! (**dev** tag)
   - Theme: [spaceship](https://spaceship-prompt.sh/)
     - SPACESHIP_USER_SHOW=false
@@ -44,7 +44,7 @@ docker run -it --rm namesmt/linux-stuff:alpine-node-dev_pnpm10.16.0
 
 #### Arch:
 
-Available on Docker registry: *(Arch builds mirror the Alpine ones on an `archlinux:latest` base — Node/pnpm via pacman+corepack, same zsh/oh-my-zsh dev setup, same self-built aws-cli v2)*
+Available on Docker registry: *(Arch builds mirror the Alpine ones on an `archlinux:latest` base — Node/pnpm via pacman+corepack, same zsh/oh-my-zsh dev setup, same distro aws-cli v2)*
 ```sh
 docker run -it --rm namesmt/linux-stuff:arch-node-dev
 
