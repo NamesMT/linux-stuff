@@ -19,12 +19,12 @@ sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/downl
   -t https://github.com/spaceship-prompt/spaceship-prompt \
   -a 'SPACESHIP_USER_SHOW=false' \
   -a 'SPACESHIP_DIR_TRUNC_REPO=false' \
+  -p https://github.com/marlonrichert/zsh-autocomplete \
   -p command-not-found \
   -p git \
-  -p history-substring-search \
   -p z \
-  -p https://github.com/zsh-users/zsh-autosuggestions \
   -p https://github.com/zsh-users/zsh-completions \
+  -p https://github.com/zsh-users/zsh-autosuggestions \
   -p https://github.com/z-shell/F-Sy-H
 
 # set zsh as default shell

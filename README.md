@@ -15,12 +15,12 @@
     - SPACESHIP_USER_SHOW=false
     - SPACESHIP_DIR_TRUNC_REPO=false
   - Plugins:
+    - https://github.com/marlonrichert/zsh-autocomplete
     - command-not-found
     - git
-    - history-substring-search
     - z
-    - https://github.com/zsh-users/zsh-autosuggestions
     - https://github.com/zsh-users/zsh-completions
+    - https://github.com/zsh-users/zsh-autosuggestions
     - https://github.com/z-shell/F-Sy-H
 - These common packages are installed for all:
   - `zip` `unzip` `jq` `sudo` `less` `zsh` `curl` `wget`
