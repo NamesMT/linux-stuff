@@ -21,7 +21,7 @@
     - z
     - https://github.com/zsh-users/zsh-autosuggestions
     - https://github.com/zsh-users/zsh-completions
-    - https://github.com/zsh-users/zsh-syntax-highlighting
+    - https://github.com/z-shell/F-Sy-H
 - These common packages are installed for all:
   - `zip` `unzip` `jq` `sudo` `less` `zsh` `curl` `wget`
   - *alpine-only:* `gcompat` `libstdc++`

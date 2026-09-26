@@ -24,7 +24,7 @@ sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/downl
   -p z \
   -p https://github.com/zsh-users/zsh-autosuggestions \
   -p https://github.com/zsh-users/zsh-completions \
-  -p https://github.com/zsh-users/zsh-syntax-highlighting
+  -p https://github.com/z-shell/F-Sy-H
 
 # set zsh as default shell
 sudo sed -i 's/\/bin\/bash/\/bin\/zsh/g' /etc/passwd

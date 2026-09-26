@@ -21,5 +21,5 @@ RUN sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/d
   -p z \
   -p https://github.com/zsh-users/zsh-autosuggestions \
   -p https://github.com/zsh-users/zsh-completions \
-  -p https://github.com/zsh-users/zsh-syntax-highlighting
+  -p https://github.com/z-shell/F-Sy-H
 ##
