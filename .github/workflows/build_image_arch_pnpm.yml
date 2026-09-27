@@ -1,7 +1,7 @@
 name: Build Arch image pnpm* tag creation
 
 concurrency:
-  group: pnpm-image-build
+  group: arch-pnpm-image-build
   cancel-in-progress: false
 
 on:
