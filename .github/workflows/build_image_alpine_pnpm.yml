@@ -1,7 +1,7 @@
 name: Build Alpine image pnpm* tag creation
 
 concurrency:
-  group: pnpm-image-build
+  group: alpine-pnpm-image-build
   cancel-in-progress: false
 
 on:
