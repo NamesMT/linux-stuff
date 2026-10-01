@@ -38,10 +38,10 @@ wget https://raw.githubusercontent.com/NamesMT/linux-stuff/main/alpine/scripts/i
 source ~/.zshrc
 fnm install --lts
 
-# Setup the environment path for pnpm
-mkdir ~/.pnpm-global
+# Setup the environment path for pnpm (XDG data dir)
+mkdir -p ~/.local/share/pnpm
 sudo touch /etc/profile.d/pnpmPath.sh && \
-  echo "export PNPM_HOME=\$HOME/.pnpm-global" | sudo tee -a /etc/profile.d/pnpmPath.sh && \
+  echo "export PNPM_HOME=\$HOME/.local/share/pnpm" | sudo tee -a /etc/profile.d/pnpmPath.sh && \
   echo "export PATH=\$PNPM_HOME/bin:\$PNPM_HOME:\$PATH" | sudo tee -a /etc/profile.d/pnpmPath.sh && \
   source /etc/profile.d/pnpmPath.sh
 
