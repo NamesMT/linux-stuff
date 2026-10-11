@@ -39,7 +39,8 @@ docker build --build-arg PNPM_VERSION=10.16.0 -f alpine/alpine-node.Dockerfile .
 - One Dockerfile per stage, `FROM namesmt/linux-stuff:<previous-stage>` — stages are chained, never self-contained.
 - Keep the `dev` and `aws` overlays as thin layers on the corresponding base; a change to shared basics belongs in the base image.
 - Keep the host bootstrap scripts (`*.sh`) behaviourally aligned with their Dockerfile, since they install the same environment for WSL/bare metal.
-- Comment non-obvious intent only; the Dockerfiles already carry short `## +dev:`/`## +aws:` section markers.
+- Comment non-obvious intent only, and keep it short — a block arguing for its own change belongs in
+  the commit message; the Dockerfiles already carry short `## +dev:`/`## +aws:` section markers.
 
 ## Gotchas
 
