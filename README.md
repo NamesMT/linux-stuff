@@ -17,11 +17,11 @@
   - Plugins:
     - command-not-found
     - git
-    - history-substring-search
     - z
     - https://github.com/zsh-users/zsh-autosuggestions
     - https://github.com/zsh-users/zsh-completions
     - https://github.com/z-shell/F-Sy-H
+    - https://github.com/marlonrichert/zsh-autocomplete *(pinned to `b7393e8`)*
 - These common packages are installed for all:
   - `zip` `unzip` `jq` `sudo` `less` `zsh` `curl` `wget`
   - *alpine-only:* `gcompat` `libstdc++`

@@ -11,19 +11,27 @@ set -e
 sudo pacman -S --noconfirm \
   zip unzip jq sudo git less zsh curl wget
 
-# Configures zsh
-sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/download/zsh-in-docker.sh)" -- \
+# Configures zsh (curl + guard: a failed fetch must abort, not silently install nothing)
+curl -fsSL -o /tmp/zsh-in-docker.sh \
+  https://github.com/deluan/zsh-in-docker/releases/latest/download/zsh-in-docker.sh
+sh -c "$(cat /tmp/zsh-in-docker.sh)" -- \
   -x \
   -t https://github.com/spaceship-prompt/spaceship-prompt \
   -a 'SPACESHIP_USER_SHOW=false' \
   -a 'SPACESHIP_DIR_TRUNC_REPO=false' \
   -p command-not-found \
   -p git \
-  -p history-substring-search \
   -p z \
   -p https://github.com/zsh-users/zsh-autosuggestions \
   -p https://github.com/zsh-users/zsh-completions \
-  -p https://github.com/z-shell/F-Sy-H
+  -p https://github.com/z-shell/F-Sy-H \
+  -p zsh-autocomplete
+test -f "$HOME/.zshrc"
+
+# Pinned — rationale in AGENTS.md (real-time completion breaks after b7393e8).
+git clone -q https://github.com/marlonrichert/zsh-autocomplete.git \
+  "$HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete"
+git -C "$HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete" checkout -q b7393e8fcb7ec05d0aff198486d54465358b8164
 
 # set zsh as default shell
 sudo sed -i 's/\/bin\/bash/\/bin\/zsh/g' /etc/passwd

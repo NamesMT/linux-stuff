@@ -1,8 +1,9 @@
 # AGENTS.md
 
 `linux-stuff` ships opinionated Node images and host bootstrap scripts for Alpine, Arch and Ubuntu.
-There is no package.json, no build system and no test suite — the Dockerfiles and shell scripts are
-the product. Images are published to Docker Hub as `namesmt/linux-stuff`, with legacy mirrors
+There is no package.json or build system — the Dockerfiles and shell scripts are the product, with
+`tests/` holding pty-driven interactive smoke tests. Images are published to Docker Hub as
+`namesmt/linux-stuff`, with legacy mirrors
 `namesmt/images-alpine` and `namesmt/images-arch` pushed alongside.
 
 Each distro has four variants: `{alpine,arch}-node` (Node LTS + pnpm + `@antfu/ni`), `-node-dev`
@@ -45,6 +46,9 @@ docker push namesmt/linux-stuff:alpine-node-dev_pnpm11.22.0
 
 # Force a rebuild of a stage when a new pnpm is published (default build-arg is `latest`)
 docker build --build-arg PNPM_VERSION=11.22.0 -f alpine/alpine-node.Dockerfile .
+
+# Interactive zsh smoke tests against a built image (pty-driven; needs docker + python3)
+tests/run.sh namesmt/linux-stuff:alpine-node-dev
 ```
 
 ## Structure
@@ -52,6 +56,7 @@ docker build --build-arg PNPM_VERSION=11.22.0 -f alpine/alpine-node.Dockerfile .
 - `alpine/` — the four Alpine Dockerfiles, `alpine-node-dev.sh` (host bootstrap), `scripts/` (`install-fnm.sh`, `install-docker.sh`, `install-glibc.sh`, `install-bun.sh`) and `assets/` (a patched fnm 1.35.1 archive that no tracked script references).
 - `arch/` — the four Arch Dockerfiles, `arch-init.sh` (new-install setup: keyring, packages, user, WSL default user) and `arch-node-dev.sh` (host bootstrap).
 - `ubuntu/` — `ubuntu-node-dev.sh` host bootstrap only; there is no Ubuntu image.
+- `tests/` — `run.sh` + `drive.py`: pty-driven interactive zsh smoke tests for a built image (see `tests/README.md`).
 - `.github/workflows/` — `build_image_alpine_pnpm.yml` and `build_image_arch_pnpm.yml` (on `pnpm*` tags or manual dispatch), `check_new_release_pnpm.yml` (daily cron).
 - `.github/scripts/new_release_check_pnpm.sh` — tags `pnpm<version>` and pushes it, which is what triggers the two build workflows.
 
@@ -108,3 +113,5 @@ docker build --build-arg PNPM_VERSION=11.22.0 -f alpine/alpine-node.Dockerfile .
 - The build workflows derive the image name from `GITHUB_REPOSITORY` lowercased, so they push `namesmt/linux-stuff` regardless of the git remote's casing, plus the legacy mirror tags.
 - Both images switch the default shell to zsh by rewriting `/etc/passwd` and set `SHELL=/bin/zsh`; Alpine's base image also clears the `node` image `ENTRYPOINT`.
 - Releasing is automated: pushing a `pnpm*` tag rebuilds every variant and pushes both the plain and suffixed tags. A manual dispatch reads the newest tag instead.
+- `zsh-autocomplete` is pinned to `b7393e8`, the last commit before the `50a99a6` async rewrite: from there on real-time completion silently renders nothing under Oh My Zsh because `zasync` is autoloaded from a directory (upstream #907; fix unmerged as #903). It is listed after `F-Sy-H` so the highlighter loads first and does not warn about its late-bound widgets. `tests/run.sh` fails if this regresses — re-check upstream before unpinning.
+- The zsh-in-docker fetch is `curl -fsSL` plus a `test -f "$HOME/.zshrc"` guard. `sh -c "$(wget -qO- …)"` fails silently and ships an image with no zsh config at all.
