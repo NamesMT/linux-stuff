@@ -57,6 +57,9 @@ check('Up arrow recalls history', hi.get('recalled'), repr(hi.get('buffer', ''))
 t = scen.get('tab_complete', {})
 check('Tab completion works', t.get('completed'), repr(t.get('buffer', ''))[:60])
 
+zc = scen.get('zsh_completions', {})
+check('zsh-completions definitions are active', zc.get('completed'), repr(zc.get('buffer', ''))[:60])
+
 ty = scen.get('typing', {})
 check('typing is not glitched', ty.get('intact'), repr(ty.get('buffer', ''))[:60])
 check('no errors while typing', not ty.get('errors'), ', '.join(ty.get('errors', [])))

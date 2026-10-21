@@ -232,6 +232,19 @@ def scenario_tab_complete(image: str) -> dict:
     return {'buffer': buffer, 'completed': buffer.endswith('checkout')}
 
 
+def scenario_zsh_completions(image: str) -> dict:
+    """`node --vers` -> `--version` comes from a zsh-completions definition, not the
+    system or OMZ ones. Guards against dropping zsh-completions as 'redundant'."""
+    session = Session(image)
+    session.wait_ready()
+    session.type_text('node --vers')
+    session.send(b'\t', 1.5)
+    state = session.dump()
+    session.close()
+    buffer = state.get('BUFFER', '').strip()
+    return {'buffer': buffer, 'completed': buffer == 'node --version'}
+
+
 def scenario_typing(image: str) -> dict:
     typed = 'echo abcdefghij_klmno'
     session = Session(image)
@@ -289,6 +302,7 @@ SCENARIOS = {
     'highlight': scenario_highlight,
     'history_up': scenario_history_up,
     'tab_complete': scenario_tab_complete,
+    'zsh_completions': scenario_zsh_completions,
     'typing': scenario_typing,
     'autosuggest': scenario_autosuggest,
     'typeahead': scenario_typeahead,
